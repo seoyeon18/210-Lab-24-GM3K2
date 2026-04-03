@@ -100,14 +100,23 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
     string color = colors[rand() % SZ_COLORS];
 
     Goat g(name, age, color);
-    trip.push_back(g);
-    trip.sort();
 
-    cout << "Added goat:\n";
-    cout << g.get_name() 
-         << g.get_age()
-         << g.get_color() << endl;
+
+    auto result = trip.insert(g);
+
+    if (result.second) {
+        cout << "\nAdded goat:\n";
+        cout << g.get_name() << " "
+             << g.get_age() << " "
+             << g.get_color() << endl;
+    } else {
+        cout << "\nDuplicate goat not added.\n";
+    }
 }
+
+
+
+
 
 int select_goat(list<Goat> trip) {
     if (trip.empty()) {
