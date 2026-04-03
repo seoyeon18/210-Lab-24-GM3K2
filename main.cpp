@@ -75,7 +75,7 @@ int main_menu() {
     return choice;
 }
 
-void display_trip(list<Goat> trip) {
+void display_trip(set<Goat> trip) {
     if (trip.empty()) {
         cout << "\nThere are no goat in the trip\n";
         return;
@@ -94,7 +94,7 @@ void display_trip(list<Goat> trip) {
 }
 
 
-void add_goat(list<Goat> &trip, string names[], string colors[]) {
+void add_goat(set<Goat> &trip, string names[], string colors[]) {
     string name = names[rand() % SZ_NAMES];
     int age = rand() % MAX_AGE +1;
     string color = colors[rand() % SZ_COLORS];
@@ -118,7 +118,7 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 
 
 
-int select_goat(list<Goat> trip) {
+int select_goat(set<Goat> trip) {
     if (trip.empty()) {
         return -1;
     }
@@ -133,7 +133,7 @@ int select_goat(list<Goat> trip) {
 }
 
 
-void delete_goat(list<Goat> &trip) {
+void delete_goat(set<Goat> &trip) {
     if (trip.empty()) {
         cout << "There are no goats to delete";
         return;
@@ -141,8 +141,8 @@ void delete_goat(list<Goat> &trip) {
 
     int choice = select_goat(trip);
 
-    if (choice < 1 || choice > trip.size()) {
-        cout << "Invalid selection";
+    if (choice < 1 || choice > static_cast<int>(trip.size())) {
+        cout << "\nInvalid selection";
         return;
     }
 
